@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.transform.kml">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="KML Transform Install"
+        directory="profiles/default"
+        description="Install profile for collective.transform.kml"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+
+    <genericsetup:importStep
+        name="collective.transform.kml-various"
+        title="kml transform various"
+        description="Various import steps for collective.transform.kml"
+        handler="collective.transform.kml.setuphandlers.importVarious">
+    </genericsetup:importStep>
+
+
+</configure>
