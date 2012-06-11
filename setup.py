@@ -25,6 +25,7 @@ setup(name='collective.transform.kml',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'htmllaundry',
       ],
       entry_points="""
       # -*- Entry points: -*-

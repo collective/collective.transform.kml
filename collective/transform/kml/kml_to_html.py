@@ -3,6 +3,8 @@ from zope.interface import implements
 
 from elementtree.ElementTree import XML, tostring, Element
 
+from htmllaundry import sanitize
+
 from Products.PortalTransforms.interfaces import itransform
 try:
     from Products.PortalTransforms.interfaces import ITransform
@@ -45,8 +47,10 @@ class KML_to_HTML():
 
             descriptions = placemark.findall(ns+'description')
             for desc in descriptions:
-                d = XML('<div>'+desc.text.strip()+'</div>')
-                bodydom.append(d)
+                if desc.text:
+                    text = sanitize(desc.text.strip())
+                    d = XML('<div>' + text + '</div>')
+                    bodydom.append(d)
 
         body = tostring(bodydom)
         cache.setData(body)
