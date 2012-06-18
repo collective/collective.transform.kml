@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+from zope.app.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 
 TRANSFORMS = [
@@ -33,9 +34,8 @@ def add_mimetypes(context, logger=None):
     if logger is None:
         # Called as upgrade step: define our own logger.
         logger = logging.getLogger('collective.transform.kml')
-    site = context.getSite()
-
-    mimetypes_registry = getToolByName(site, 'mimetypes_registry')
+    portal = getSite()
+    mimetypes_registry = getToolByName(portal, 'mimetypes_registry')
     all_mimetypes = mimetypes_registry.list_mimetypes()
 
     for mtype in MIMETYPES:

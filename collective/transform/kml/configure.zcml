@@ -23,5 +23,21 @@
         handler="collective.transform.kml.setuphandlers.importVarious">
     </genericsetup:importStep>
 
+  <genericsetup:upgradeStep
+      title="collective.transform.kml register mimetypes"
+      description="Register mimetypes for gis files"
+      source="0001"
+      destination="002"
+      handler="collective.transform.kml.setuphandlers.add_mimetypes"
+      profile="collective.transform.kml:default" />
+
+  <genericsetup:upgradeStep
+      title="collective.transform.kml install transforms"
+      description="Transforms for gis files"
+      source="0001"
+      destination="002"
+      handler="collective.transform.kml.setuphandlers.installTransform"
+      profile="collective.transform.kml:default" />
+
 
 </configure>
