@@ -15,7 +15,7 @@ import kml_to_html
 
 
 class KMZ_to_HTML():
-    """Transform which converts from KML to HTML"""
+    """Transform which converts from KMZ to HTML"""
 
     if HAS_PLONE3:
         __implements__ = itransform
@@ -38,6 +38,7 @@ class KMZ_to_HTML():
         tmp.file.write(data)
         tmp.file.flush()
         text = u''
+        htlm = u''
         if zipfile.is_zipfile(tmp.name):
             tmpzip = zipfile.ZipFile(tmp.file)
             for zi in tmpzip.infolist():
@@ -47,8 +48,9 @@ class KMZ_to_HTML():
                     text = tz.read().decode('utf-8', 'replace')
                     transform = kml_to_html.KML_to_HTML()
                     cache = transform.convert(text, cache, **kwargs)
+                    html += cache.getData()
                     tz.close()
-                    break
+            cache.setData(html)
         tmp.close()
         return cache
 
