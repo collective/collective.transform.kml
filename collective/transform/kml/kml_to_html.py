@@ -49,7 +49,7 @@ class KML_to_HTML():
             for desc in descriptions:
                 if desc.text:
                     text = sanitize(desc.text.strip())
-                    d = XML('<div>' + text + '</div>')
+                    d = XML('<div>' + text.encode('ascii', 'xmlcharrefreplace') + '</div>')
                     bodydom.append(d)
 
         body = tostring(bodydom)
