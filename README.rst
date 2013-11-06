@@ -8,7 +8,9 @@ Installation
 ============
 
 Add ``collective.transform.kml`` to the list of eggs to install, e.g.:
+
 ::
+
     [buildout]
     ...
     eggs =
@@ -16,5 +18,7 @@ Add ``collective.transform.kml`` to the list of eggs to install, e.g.:
         collective.transform.kml
 
 Re-run buildout, e.g. with:
+
 ::
+
     $ ./bin/buildout

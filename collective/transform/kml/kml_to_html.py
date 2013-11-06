@@ -48,7 +48,11 @@ class KML_to_HTML():
             descriptions = placemark.findall(ns+'description')
             for desc in descriptions:
                 if desc.text:
-                    text = sanitize(desc.text.strip())
+                    try:
+                        text = desc.text.encode('ascii', 'xmlcharrefreplace').strip()
+                    except:
+                        text = desc.text.strip()
+                    text = sanitize(text)
                     d = XML('<div>' + text.encode('ascii', 'xmlcharrefreplace') + '</div>')
                     bodydom.append(d)
 
